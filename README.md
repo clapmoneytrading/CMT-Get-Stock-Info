@@ -1,6 +1,6 @@
-# MarketSmith Stock Dashboard
+# CMT Stock Dashboard
 
-Local dashboard to search MarketSmith India, capture stock metrics, and store them in SQLite.
+Local dashboard to search CMT India, capture stock metrics, and store them in SQLite.
 
 ## Setup
 
