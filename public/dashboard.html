@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clap Money Trading Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="dashboard-page">
+    <div class="background-orbit"></div>
+    <div class="background-grid"></div>
+
+    <header class="hero compact-hero">
+      <div>
+        <p class="eyebrow">Clap Money Trading</p>
+        <h1>Dashboard</h1>
+        <p class="subhead">All filters, records, backup import/export and admin tools.</p>
+      </div>
+      <div class="hero-card">
+        <a class="nav-button" href="/">Back to Stock Search</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls">
+        <div>
+          <label for="filter">Filter</label>
+          <input id="filter" type="text" placeholder="Type to filter saved records" />
+        </div>
+        <div class="filter-hint">Numeric filters accept &gt;, &lt;, &gt;=, &lt;=, =, or ranges like 10-20.</div>
+        <div>
+          <label for="filter-roe">ROE</label>
+          <input id="filter-roe" type="text" placeholder=">= 15" />
+        </div>
+        <div>
+          <label for="filter-rs">RS Rating</label>
+          <input id="filter-rs" type="text" placeholder=">= 80" />
+        </div>
+        <div>
+          <label for="filter-eps-rating">EPS Rating</label>
+          <input id="filter-eps-rating" type="text" placeholder=">= 70" />
+        </div>
+        <div>
+          <label for="filter-price">Current Price</label>
+          <input id="filter-price" type="text" placeholder="100-500" />
+        </div>
+        <div>
+          <label for="filter-master">Master Rank Score</label>
+          <input id="filter-master" type="text" placeholder="A" />
+        </div>
+        <div>
+          <label for="filter-pe">P/E Ratio</label>
+          <input id="filter-pe" type="text" placeholder="< 40" />
+        </div>
+        <div>
+          <label for="filter-eps-strength">ESP Rank</label>
+          <input id="filter-eps-strength" type="text" placeholder=">= 60" />
+        </div>
+        <div>
+          <label for="filter-price-strength">Price Rank</label>
+          <input id="filter-price-strength" type="text" placeholder=">= 60" />
+        </div>
+        <div>
+          <label for="filter-last4q">Last 4Q Earnings %</label>
+          <input id="filter-last4q" type="text" placeholder=">= 20" />
+        </div>
+        <div>
+          <label for="filter-eps-percent">EPS %</label>
+          <input id="filter-eps-percent" type="text" placeholder=">= 15" />
+        </div>
+        <div>
+          <label for="filter-change">Change</label>
+          <input id="filter-change" type="text" placeholder=">= 2" />
+        </div>
+        <div>
+          <label for="filter-sales">Sales (Cr)</label>
+          <input id="filter-sales" type="text" placeholder=">= 100" />
+        </div>
+        <div>
+          <label for="filter-sales-change">%Chg</label>
+          <input id="filter-sales-change" type="text" placeholder=">= 10" />
+        </div>
+        <div>
+          <label for="sort">Sort</label>
+          <select id="sort">
+            <option value="queried_at">Recently added</option>
+            <option value="stock_name">Stock name</option>
+            <option value="current_price">Current price</option>
+            <option value="eps_strength">ESP rank</option>
+            <option value="price_strength">Price rank</option>
+            <option value="master_rank">Master rank score</option>
+            <option value="master_score">Master rank score (numeric)</option>
+            <option value="pe_ratio">P/E ratio</option>
+            <option value="return_on_equity">ROE</option>
+            <option value="rs_rating">RS rating</option>
+            <option value="eps_rating">EPS rating</option>
+            <option value="last_4_quarterly_earnings_percent">Last 4Q earnings %</option>
+            <option value="eps_percent">EPS %</option>
+            <option value="change">Change</option>
+            <option value="sales_cr">Sales (Cr)</option>
+            <option value="sales_change_percent">%Chg</option>
+            <option value="no_of_funds">No of Funds</option>
+            <option value="shares_held_by_funds">Shares held by Funds</option>
+          </select>
+        </div>
+        <div>
+          <label for="order">Order</label>
+          <select id="order">
+            <option value="desc">Descending</option>
+            <option value="asc">Ascending</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="admin-row">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-eyebrow">Manual fallback</p>
+              <h2>Add a record by hand</h2>
+            </div>
+            <p class="panel-helper">
+              Use this when live lookup does not return a stock.
+            </p>
+          </div>
+          <form id="manual-form" class="manual-grid">
+            <div>
+              <label for="manual-query">Search query (optional)</label>
+              <input id="manual-query" name="query" type="text" placeholder="Query used" />
+            </div>
+            <div>
+              <label for="manual-stock">Stock name</label>
+              <input id="manual-stock" name="stock_name" type="text" placeholder="Company name" required />
+            </div>
+            <div>
+              <label for="manual-price">Current price</label>
+              <input id="manual-price" name="current_price" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-eps-strength">ESP Rank</label>
+              <input id="manual-eps-strength" name="eps_strength" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-price-strength">Price Rank</label>
+              <input id="manual-price-strength" name="price_strength" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-master">Master Rank Score</label>
+              <input id="manual-master" name="master_score" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-master-rank">Master Rank Score</label>
+              <input id="manual-master-rank" name="master_rank" type="text" placeholder="A" />
+            </div>
+            <div>
+              <label for="manual-pe">P/E Ratio</label>
+              <input id="manual-pe" name="pe_ratio" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-roe">Return on Equity</label>
+              <input id="manual-roe" name="return_on_equity" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-rs">RS Rating</label>
+              <input id="manual-rs" name="rs_rating" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-eps-rating">EPS Rating</label>
+              <input id="manual-eps-rating" name="eps_rating" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-last4q">Last 4 Quarterly Earnings %</label>
+              <input id="manual-last4q" name="last_4_quarterly_earnings_percent" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-eps-percent">EPS %</label>
+              <input id="manual-eps-percent" name="eps_percent" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-change">Change</label>
+              <input id="manual-change" name="change" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-sales">Sales (Cr)</label>
+              <input id="manual-sales" name="sales_cr" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-sales-change">%Chg</label>
+              <input id="manual-sales-change" name="sales_change_percent" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-no-of-funds">No of Funds</label>
+              <input id="manual-no-of-funds" name="no_of_funds" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-no-of-funds-percent">No of Funds %</label>
+              <input id="manual-no-of-funds-percent" name="no_of_funds_percent" type="text" placeholder="-8.95%" />
+            </div>
+            <div>
+              <label for="manual-shares-held-by-funds">Shares held by Funds</label>
+              <input id="manual-shares-held-by-funds" name="shares_held_by_funds" type="text" placeholder="" />
+            </div>
+            <div>
+              <label for="manual-shares-held-by-funds-percent">Shares held by Funds %</label>
+              <input
+                id="manual-shares-held-by-funds-percent"
+                name="shares_held_by_funds_percent"
+                type="text"
+                placeholder="-0.75%"
+              />
+            </div>
+            <div class="manual-actions">
+              <button type="submit">Save manual record</button>
+              <span id="manual-status" class="status"></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-eyebrow">Admin</p>
+              <h2>Refresh, export, import</h2>
+            </div>
+            <p class="panel-helper">
+              Re-fetch data and manage full database backups.
+            </p>
+          </div>
+          <div class="admin-actions">
+            <button id="refresh-all" type="button">Update all stocks</button>
+          </div>
+          <div class="admin-actions">
+            <button id="export-db" type="button">Export backup</button>
+          </div>
+          <div class="admin-actions admin-import-row">
+            <select id="import-mode" aria-label="Import mode">
+              <option value="replace">Replace existing records</option>
+              <option value="merge">Merge with existing records</option>
+            </select>
+            <input id="import-file" type="file" accept="application/json,.json" />
+            <button id="import-db" type="button">Import backup</button>
+          </div>
+          <div class="admin-actions delete-actions">
+            <button id="delete-selected" type="button">Delete selected records</button>
+          </div>
+          <span id="refresh-status" class="status"></span>
+        </div>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th><input id="select-all-records" type="checkbox" aria-label="Select all records" /></th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>ESP Rank</th>
+              <th>Price Rank</th>
+              <th>Master Rank Score</th>
+              <th>P/E</th>
+              <th>ROE</th>
+              <th>RS</th>
+              <th>EPS</th>
+              <th>Last 4Q %</th>
+              <th>EPS %</th>
+              <th>Change</th>
+              <th>Sales (Cr)</th>
+              <th>%Chg</th>
+              <th>No of Funds</th>
+              <th>Shares held by Funds</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="records-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>Clap Money Trading • All data stored locally in your SQLite database.</p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

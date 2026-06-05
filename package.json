@@ -1,0 +1,15 @@
+{
+  "name": "cmt-get-stock-details",
+  "version": "1.0.0",
+  "description": "Local MarketSmith India stock lookup dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.19.2",
+    "undici": "^6.19.8"
+  }
+}
